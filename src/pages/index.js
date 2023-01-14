@@ -15,12 +15,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="main-con grid gap-0 grid-cols-1 sm:grid-cols-2 grid-rows-1">
-        <div className="today-con border-2">01</div>
-        <div className="details-con grid gap-0 grid-cols-1 grid-rows-4">
-          <div className="border-2">A</div>
-          <div className="border-2">A</div>
-          <div className="border-2">A</div>
-          <div className="border-2">A</div>
+        <div className="today-con grid gap-1 grid-cols-1 grid-rows-2">
+          <div className="border-2">A1</div>
+          <div className="border-2">A2</div>
+        </div>
+
+        <div className="details-con grid gap-1 grid-cols-1 grid-rows-4">
+          <div className="border-2">B1</div>
+          <div className="border-2">B2</div>
+          <div className="border-2">B3</div>
+          <div className="border-2">B4</div>
         </div>
       </main>
     </>
