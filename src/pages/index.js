@@ -1,17 +1,21 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
-import localizeIcon from "../../public/localize-50.png";
+import Searchbar from "@/components/Searchbar";
 // import styles from '@/styles/Home.module.css'
-import searchIcon from "../../public/search-30.png";
 import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-const [searchInput, setSearchInput] = useState('')
-console.log("searchInput: ", searchInput);
+  const API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
+  const [searchInput, setSearchInput] = useState("");
 
+  const handleSeachInputChange = (e) => {
+    setSearchInput(e.target.value);
+  };
+  
+  console.log("searchInput: ", searchInput);
   return (
     <>
       <Head>
@@ -21,33 +25,11 @@ console.log("searchInput: ", searchInput);
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="main-con grid gap-0 grid-cols-1 sm:grid-cols-2 grid-rows-1">
-        <div className="today-con grid gap-1 grid-cols-1 grid-rows-2">
-          <div className="today-con-search flex justify-center  pt-1 border-1">
-            <div className="search-con w-fit h-fit flex justify-center items-center align-middle pl-1 pr-1 border border-dashed border-gray-200 rounded-md">
-              <Image
-                className="inline-block"
-                src={searchIcon}
-                alt="logo"
-                width="15"
-                height="15"
-              />
-              <input
-                className="pl-1"
-                type="search"
-                value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
-                placeholder="Search for Places"
-              />
-              <Image
-                className="inline-block"
-                src={localizeIcon}
-                alt="logo"
-                width="15"
-                height="15"
-              />
-            </div>
-          </div>
-
+        <div className="today-con grid gap-1 grid-cols-1 grid-rows-2 gap-y-4 border-2">
+          <Searchbar
+            handleSeachInputChange={handleSeachInputChange}
+            searchInput={searchInput}
+          />
           <div className="border-2">
             <div>Degree</div>
             <div>{searchInput}</div>
