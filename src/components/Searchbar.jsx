@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import Image from "next/image";
 import localizeIcon from "../../public/localize-50.png";
 import searchIcon from "../../public/search-30.png";
 
 const Searchbar = ({ handleSeachInputChange, searchInput }) => {
+  const searchField = useRef(null);
 
-
-
+  useEffect(() => {
+    searchField.current.focus();
+  }, [])
   return (
     <>
       <div className="today-con-search flex justify-center  pt-1 border-1">
@@ -20,11 +22,13 @@ const Searchbar = ({ handleSeachInputChange, searchInput }) => {
             height="15"
           />
           <input
+            ref={searchField}
             className="pl-1"
             type="search"
             value={searchInput}
             onChange={(e) => handleSeachInputChange(e)}
-            placeholder="Search for Places" />
+            placeholder="Search for Places"
+          />
           <Image
             className="inline-block"
             src={localizeIcon}
