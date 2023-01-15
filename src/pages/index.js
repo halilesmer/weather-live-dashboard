@@ -1,21 +1,35 @@
+// import styles from '@/styles/Home.module.css'
+import { useEffect, useState } from "react";
+
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import Searchbar from "@/components/Searchbar";
-// import styles from '@/styles/Home.module.css'
-import { useState } from "react";
+import useGeoCode from "@/utils/useGeoCode";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
-  const [searchInput, setSearchInput] = useState("");
+  const [weatherData, setWeatherData] = useState(null);
+  const [searchInput, setSearchInput] = useState({
+    city: "",
+  });
+  const { getGeoCodeFunc, foreCastWeather } = useGeoCode();
 
-  const handleSeachInputChange = (e) => {
-    setSearchInput(e.target.value);
+  const handleSearchInputChange = (e) => {
+    setSearchInput((prevState) => ({ ...prevState, city: e.target.value }));
   };
-  
-  console.log("searchInput: ", searchInput);
+
+  const handleGeoCodeClick = async (e) => {
+    const geoData = await getGeoCodeFunc(searchInput);
+    const foreCast = await foreCastWeather(geoData[0].lat, geoData[0].lon);
+
+    setWeatherData(foreCast);
+    console.log("foreCast: ", foreCast);
+  };
+
+  // console.log("searchInput: ", searchInput);
   return (
     <>
       <Head>
@@ -27,12 +41,13 @@ export default function Home() {
       <main className="main-con grid gap-0 grid-cols-1 sm:grid-cols-2 grid-rows-1">
         <div className="today-con grid gap-1 grid-cols-1 grid-rows-2 gap-y-4 border-2">
           <Searchbar
-            handleSeachInputChange={handleSeachInputChange}
+            handleGeoCodeClick={handleGeoCodeClick}
+            handleSearchInputChange={handleSearchInputChange}
             searchInput={searchInput}
           />
           <div className="border-2">
             <div>Degree</div>
-            <div>{searchInput}</div>
+            <div>{searchInput.city}</div>
           </div>
         </div>
 

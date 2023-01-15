@@ -4,7 +4,7 @@ import Image from "next/image";
 import localizeIcon from "../../public/localize-50.png";
 import searchIcon from "../../public/search-30.png";
 
-const Searchbar = ({ handleSeachInputChange, searchInput }) => {
+const Searchbar = ({ handleGeoCodeClick,handleSearchInputChange, searchInput }) => {
   const searchField = useRef(null);
 
   useEffect(() => {
@@ -20,13 +20,14 @@ const Searchbar = ({ handleSeachInputChange, searchInput }) => {
             alt="logo"
             width="15"
             height="15"
+            onClick={()=>handleGeoCodeClick()}
           />
           <input
             ref={searchField}
             className="pl-1"
             type="search"
-            value={searchInput}
-            onChange={(e) => handleSeachInputChange(e)}
+            value={searchInput.city}
+            onChange={handleSearchInputChange}
             placeholder="Search for Places"
           />
           <Image
