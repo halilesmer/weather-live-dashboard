@@ -21,18 +21,25 @@ export default function Home() {
     setSearchInput((prevState) => ({ ...prevState, city: e.target.value }));
   };
 
-  const handleGeoCodeClick = async (e) => {
-    if (e) {
-      const geoData = await getGeoCodeFunc(searchInput);
+  const handleGeoCodeClick = async (cityString) => {
+    const city = !searchInput.city ? { city: cityString } : searchInput;
+    console.log("city: ", city);
+    if (city) {
+      const geoData = await getGeoCodeFunc(city);
+      console.log("geoData: ", geoData);
       const foreCast = await foreCastWeather(geoData[0].lat, geoData[0].lon);
       setWeatherData(foreCast);
-      console.log("foreCast: ", foreCast);
     } else {
       console.log("error :>> ");
     }
   };
 
+  useEffect(() => {
+    handleGeoCodeClick("berlin");
+    //eslint-disable-next-line
+  }, []);
   // console.log("searchInput: ", searchInput);
+  console.log("weatherData", weatherData);
   return (
     <>
       <Head>
@@ -41,26 +48,34 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="main-con grid gap-0 grid-cols-1 sm:grid-cols-2 grid-rows-1">
-        <div className="today-con grid gap-1 grid-cols-1 grid-rows-2 gap-y-4 border-2">
-          <Searchbar
-            handleGeoCodeClick={handleGeoCodeClick}
-            handleSearchInputChange={handleSearchInputChange}
-            searchInput={searchInput}
-          />
-          <div className="border-2">
-            <div>Degree</div>
-            <div>{searchInput.city}</div>
+      {weatherData && (
+        <main className="main-con grid gap-0 grid-cols-1 sm:grid-cols-2 grid-rows-1">
+          <div className="today-con grid gap-1 grid-cols-1 grid-rows-3 gap-y-1 border-2 border-orange-300">
+            <div className="border-2">
+              <Searchbar
+                handleGeoCodeClick={handleGeoCodeClick}
+                handleSearchInputChange={handleSearchInputChange}
+                searchInput={searchInput}
+              />
+            </div>
+            <div className="border-2">
+              <div>{weatherData.current.temp} C</div>
+              <div>Monday, 16:00</div>
+            </div>
+            <div className="border-2">
+              <div>{searchInput.city}</div>
+            </div>
           </div>
-        </div>
 
-        <div className="details-con grid gap-1 grid-cols-1 grid-rows-4">
-          <div className="border-2">B1</div>
-          <div className="border-2">B2</div>
-          <div className="border-2">B3</div>
-          <div className="border-2">B4</div>
-        </div>
-      </main>
+          <div className="details-con grid gap-1 grid-cols-1 grid-rows-4">
+            <div className="border-2">B1</div>
+            <div className="border-2">B2</div>
+            <div className="border-2">B3</div>
+            <div className="border-2">B4</div>
+          </div>
+        </main>
+      )}
+      {!weatherData && <div>Loading...</div>}
     </>
   );
 }

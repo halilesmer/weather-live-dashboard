@@ -14,4 +14,4 @@ pnpm dev
 
 ## Demo:
 
-https://weather-live-dashboard-oylxlgwwh-halilesmer.vercel.app/
+https://weather-live-dashboard-halilesmer.vercel.app/
