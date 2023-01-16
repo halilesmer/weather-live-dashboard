@@ -4,11 +4,8 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
-import SearchBarCon from "@/components/SearchBarCon";
 import TodayCon from "@/components/TodayCon";
-import cloudIcon from "../../public/cloud-icon.png";
 import { data } from "@/data";
-import humidityIcon from "../../public/humidity-icon.png";
 import useGeoCode from "@/utils/useGeoCode";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -29,7 +26,7 @@ export default function Home() {
     const city = !searchInput.city ? { city: cityString } : searchInput;
     if (city.city) {
       const geoData = await getGeoCodeFunc(city);
-      console.log("geoData: ", geoData);
+      if (geoData.length < 1) return setCheckInput(true);
       const foreCast = await foreCastWeather(geoData[0].lat, geoData[0].lon);
       console.log("foreCast: ", foreCast);
       setCheckInput(false);
@@ -45,7 +42,7 @@ export default function Home() {
     handleGeoCodeClick("berlin");
     //eslint-disable-next-line
   }, []);
-  // console.log("searchInput: ", searchInput);
+  console.log("searchInput: ", searchInput);
   console.log("weatherData", weatherData);
   return (
     <>
@@ -57,62 +54,13 @@ export default function Home() {
       </Head>
       {weatherData && (
         <main className="main-con grid gap-0 grid-cols-1 sm:grid-cols-2  auto-rows-auto pr-3 pl-3">
-          <div className="today-con grid gap-1 grid-cols-1  gap-y-1 auto-rows-auto pb-6">
-            <SearchBarCon
-              handleGeoCodeClick={handleGeoCodeClick}
-              handleSearchInputChange={handleSearchInputChange}
-              searchInput={searchInput}
-            />
-
-            <TodayCon weatherData={weatherData} />
-
-            <div className="today-con-description ">
-              <figure className="today-con_description_icon flex mt-2">
-                <Image
-                  className="inline-block w-auto h-auto"
-                  src={`https://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`}
-                  alt="current weather icon"
-                  width="20"
-                  height="20"
-                  blurDataURL="blur"
-                  priority="true"
-                />
-                <figcaption className="pl-2">
-                  {weatherData.current.weather[0].description}
-                </figcaption>
-              </figure>
-
-              <figure className="today-con_description_icon flex mt-2 ">
-                <Image
-                  className="inline-block w-auto h-auto"
-                  src={humidityIcon}
-                  alt="current weather icon"
-                  width="20"
-                  height="20"
-                  blurDataURL="blur"
-                  priority="true"
-                />
-                <figcaption className="pl-2">
-                  Humidity: {weatherData.current.humidity}%
-                </figcaption>
-              </figure>
-
-              <figure className="today-con_description_icon flex mt-2 ">
-                <Image
-                  className="inline-block w-auto h-auto"
-                  src={cloudIcon}
-                  alt="current weather icon"
-                  width="20"
-                  height="20"
-                  blurDataURL="blur"
-                  priority="true"
-                />
-                <figcaption className="pl-2">
-                  Clouds: {weatherData.current.clouds}%
-                </figcaption>
-              </figure>
-            </div>
-          </div>
+          <TodayCon
+            weatherData={weatherData}
+            handleGeoCodeClick={handleGeoCodeClick}
+            handleSearchInputChange={handleSearchInputChange}
+            searchInput={searchInput}
+            checkInput={checkInput}
+          />
 
           <div className="details-con grid gap-1 grid-cols-1 grid-rows-4">
             <div className="border-2">B1</div>

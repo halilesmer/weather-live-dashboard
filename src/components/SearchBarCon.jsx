@@ -4,7 +4,8 @@ import SearchBar from "./SearchBar";
 const SearchBarCon = ({
   handleGeoCodeClick,
   handleSearchInputChange,
-  searchInput,
+  searchInput, 
+  checkInput
 }) => {
   return (
     <div className="search-bar-con border-2">
