@@ -15,23 +15,25 @@ export default function Home() {
   const [searchInput, setSearchInput] = useState({
     city: "",
   });
+const [checkInput, setCheckInput] = useState(false);
   
   const { getGeoCodeFunc, foreCastWeather } = useGeoCode();
 
   const handleSearchInputChange = (e) => {
     setSearchInput((prevState) => ({ ...prevState, city: e.target.value }));
   };
-
   const handleGeoCodeClick = async (cityString) => {
     const city = !searchInput.city ? { city: cityString } : searchInput;
-    console.log("city: ", city);
-    if (city) {
+    if (city.city) {
       const geoData = await getGeoCodeFunc(city);
       console.log("geoData: ", geoData);
       const foreCast = await foreCastWeather(geoData[0].lat, geoData[0].lon);
-      setWeatherData(foreCast);
+      console.log("foreCast: ", foreCast);
+      setCheckInput(false);
+      setWeatherData(foreCast.data);
     } else {
       console.log("error :>> ");
+      return setCheckInput(true);
     }
   };
 
@@ -58,6 +60,7 @@ export default function Home() {
                 handleSearchInputChange={handleSearchInputChange}
                 searchInput={searchInput}
               />
+              {checkInput && <div className="text-red-600 text-center font-bold">Please check the given place name</div>}
             </div>
             <div className="icon-con border-2">
               <div>Monday, 16:00</div>
@@ -69,6 +72,7 @@ export default function Home() {
                 width="90"
                 height="90"
                 blurDataURL="blur"
+                priority="true"
               />
               <div>{weatherData.current.temp} C</div>
               <div>Monday, 16:00</div>
