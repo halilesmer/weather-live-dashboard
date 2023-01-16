@@ -22,11 +22,14 @@ export default function Home() {
   };
 
   const handleGeoCodeClick = async (e) => {
-    const geoData = await getGeoCodeFunc(searchInput);
-    const foreCast = await foreCastWeather(geoData[0].lat, geoData[0].lon);
-
-    setWeatherData(foreCast);
-    console.log("foreCast: ", foreCast);
+    if (e) {
+      const geoData = await getGeoCodeFunc(searchInput);
+      const foreCast = await foreCastWeather(geoData[0].lat, geoData[0].lon);
+      setWeatherData(foreCast);
+      console.log("foreCast: ", foreCast);
+    } else {
+      console.log("error :>> ");
+    }
   };
 
   // console.log("searchInput: ", searchInput);
