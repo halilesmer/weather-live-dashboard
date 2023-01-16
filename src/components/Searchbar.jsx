@@ -4,7 +4,7 @@ import Image from "next/image";
 import localizeIcon from "../../public/localize-50.png";
 import searchIcon from "../../public/search-30.png";
 
-const Searchbar = ({ handleGeoCodeClick,handleSearchInputChange, searchInput }) => {
+const SearchBar = ({ handleGeoCodeClick,handleSearchInputChange, searchInput }) => {
   const searchField = useRef(null);
 
   useEffect(() => {
@@ -43,4 +43,4 @@ const Searchbar = ({ handleGeoCodeClick,handleSearchInputChange, searchInput }) 
   );
 }
 
-export default Searchbar
+export default SearchBar

@@ -4,13 +4,12 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
-import Searchbar from "@/components/Searchbar";
+import SearchBarCon from "@/components/SearchBarCon";
 import TodayCon from "@/components/TodayCon";
 import cloudIcon from "../../public/cloud-icon.png";
 import { data } from "@/data";
 import humidityIcon from "../../public/humidity-icon.png";
 import useGeoCode from "@/utils/useGeoCode";
-import useTime from "@/utils/useTime";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -59,18 +58,11 @@ export default function Home() {
       {weatherData && (
         <main className="main-con grid gap-0 grid-cols-1 sm:grid-cols-2  auto-rows-auto pr-3 pl-3">
           <div className="today-con grid gap-1 grid-cols-1  gap-y-1 auto-rows-auto pb-6">
-            <div className="search-bar-con border-2">
-              <Searchbar
-                handleGeoCodeClick={handleGeoCodeClick}
-                handleSearchInputChange={handleSearchInputChange}
-                searchInput={searchInput}
-              />
-              {checkInput && (
-                <p className="aler-box text-red-600 text-center font-bold">
-                  Please check the given place name
-                </p>
-              )}
-            </div>
+            <SearchBarCon
+              handleGeoCodeClick={handleGeoCodeClick}
+              handleSearchInputChange={handleSearchInputChange}
+              searchInput={searchInput}
+            />
 
             <TodayCon weatherData={weatherData} />
 
