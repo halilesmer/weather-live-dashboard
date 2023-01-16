@@ -9,7 +9,7 @@ import moment from "moment";
 import useTime from "@/utils/useTime";
 
 const TodayCon = () => {
-  const { weatherData } = useContext(AppContext)
+  const { weatherData, searchInput, } = useContext(AppContext)
   const { getHourMin } = useTime();
 
   // console.log("weatherData: ", weatherData);
@@ -17,20 +17,18 @@ const TodayCon = () => {
     <div className="today-con grid gap-1 grid-cols-1  gap-y-1 auto-rows-auto pb-6">
       <SearchBarCon />
 
-
-
       <div className="today-con-icon-box ">
         <p className="today-con-city-name-box text-center">
-          {weatherData.timezone.substring(weatherData.timezone.indexOf("/") + 1)}
+          {(searchInput.success && weatherData) ? searchInput.success.substring(0, 1).toUpperCase() + searchInput.success.substring(1).toLowerCase() : 'Berlin'}
         </p>
 
         <figure className="today-con-icon-box text-center">
           <Image
-            className="inline-block w-auto h-auto"
+            className="inline-block"
             src={`https://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`}
             alt="current weather icon"
-            width="150"
-            height="150"
+            width="160"
+            height="160"
             blurDataURL="blur"
             priority="true"
           />

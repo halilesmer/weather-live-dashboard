@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 
 import { AppContext } from "../context/AppContext";
-import SearchBar from "./SearchBar";
+import SearchBar from "./SearchBar.jsx";
 
 const SearchBarCon = () => {
-  const { checkInput } = useContext(AppContext);
+  const { IsSearchInputTrue } = useContext(AppContext);
   return (
     <div className="search-bar-con border-2">
       <SearchBar />
-      {checkInput && (
+      {IsSearchInputTrue && (
         <p className="aler-box text-red-600 text-center font-bold">
           Please check the given place name
         </p>

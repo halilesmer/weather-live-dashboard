@@ -5,7 +5,7 @@ import useGeoCode from "@/utils/useGeoCode";
 const AppContext = createContext();
 
 const AppProvider = (props) => {
-  const [checkInput, setCheckInput] = useState(false);
+  const [IsSearchInputTrue, setIsSearchInputTrue] = useState(false);
   const [weatherData, setWeatherData] = useState(null);
   const [searchInput, setSearchInput] = useState({
     city: "",
@@ -19,22 +19,22 @@ const AppProvider = (props) => {
     const city = !searchInput.city ? { city: cityString } : searchInput;
     if (city.city) {
       const geoData = await getGeoCodeFunc(city);
-      if (geoData.length < 1) return setCheckInput(true);
+      if (geoData.length < 1) return setIsSearchInputTrue(true);
       const foreCast = await foreCastWeather(geoData[0].lat, geoData[0].lon);
       // console.log("foreCast: ", foreCast);
-      setCheckInput(false);
+      setIsSearchInputTrue(false);
       setWeatherData(foreCast.data);
-      setSearchInput((prevState) => ({ ...prevState, city: "" }));
+      setSearchInput((prevState) => ({ ...prevState, city: "", success: searchInput.city }));
     } else {
       console.log("error :>> ");
-      return setCheckInput(true);
+      return setIsSearchInputTrue(true);
     }
   };
 
   const value = {
     handleSearchInputChange,
     handleGeoCodeClick,
-    checkInput,
+    IsSearchInputTrue,
     weatherData,
     searchInput,
   };

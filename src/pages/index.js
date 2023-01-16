@@ -12,18 +12,15 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const {
-    handleSearchInputChange,
     handleGeoCodeClick,
-    checkInput,
     weatherData,
-    searchInput,
   } = useContext(AppContext);
 
   useEffect(() => {
     handleGeoCodeClick("berlin");
     //eslint-disable-next-line
   }, []);
-  // console.log("searchInput: ", searchInput);
+
   // console.log("weatherData", weatherData);
   return (
     <>
