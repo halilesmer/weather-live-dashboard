@@ -5,14 +5,17 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import Searchbar from "@/components/Searchbar";
+import { data } from "@/data";
 import moment from "moment";
 import useGeoCode from "@/utils/useGeoCode";
 import useTime from "@/utils/useTime";
 
+console.log("data: ", data);
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const [weatherData, setWeatherData] = useState(null);
+  const [weatherData, setWeatherData] = useState(data);
   const [searchInput, setSearchInput] = useState({
     city: "",
   });
@@ -41,7 +44,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    handleGeoCodeClick("berlin");
+    // handleGeoCodeClick("berlin");
     //eslint-disable-next-line
   }, []);
   // console.log("searchInput: ", searchInput);
@@ -97,7 +100,7 @@ export default function Home() {
                 </span>
               </div>
             </div>
-            <div className="border-2">
+            <div className="today-con-description border-2">
               <div>{searchInput.city}</div>
             </div>
           </div>
