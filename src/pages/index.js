@@ -5,7 +5,9 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import Searchbar from "@/components/Searchbar";
+import cloudIcon from "../../public/cloud-icon.png";
 import { data } from "@/data";
+import humidityIcon from "../../public/humidity-icon.png";
 import moment from "moment";
 import useGeoCode from "@/utils/useGeoCode";
 import useTime from "@/utils/useTime";
@@ -59,7 +61,7 @@ export default function Home() {
       </Head>
       {weatherData && (
         <main className="main-con grid gap-0 grid-cols-1 sm:grid-cols-2  auto-rows-auto pr-3 pl-3">
-          <div className="today-con grid gap-1 grid-cols-1  gap-y-1 auto-rows-auto border-2">
+          <div className="today-con grid gap-1 grid-cols-1  gap-y-1 auto-rows-auto pb-6">
             <div className="search-bar-con border-2">
               <Searchbar
                 handleGeoCodeClick={handleGeoCodeClick}
@@ -72,7 +74,7 @@ export default function Home() {
                 </p>
               )}
             </div>
-            <div className="today-con-icon-box border-2">
+            <div className="today-con-icon-box ">
               <p className="today-con-city-name-box text-center">
                 {weatherData.timezone.substring(
                   weatherData.timezone.indexOf("/") + 1
@@ -100,8 +102,51 @@ export default function Home() {
                 </span>
               </div>
             </div>
-            <div className="today-con-description border-2">
-              <div>{searchInput.city}</div>
+            <div className="today-con-description ">
+              <figure className="today-con_description_icon flex mt-2">
+                <Image
+                  className="inline-block"
+                  src={`https://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`}
+                  alt="current weather icon"
+                  width="20"
+                  height="20"
+                  blurDataURL="blur"
+                  priority="true"
+                />
+                <figcaption className="pl-2">
+                  {weatherData.current.weather[0].description}
+                </figcaption>
+              </figure>
+
+              <figure className="today-con_description_icon flex mt-2">
+                <Image
+                  className="inline-block"
+                  src={humidityIcon}
+                  alt="current weather icon"
+                  width="20"
+                  height="20"
+                  blurDataURL="blur"
+                  priority="true"
+                />
+                <figcaption className="pl-2">
+                  Humidity: {weatherData.current.humidity}%
+                </figcaption>
+              </figure>
+
+              <figure className="today-con_description_icon flex mt-2">
+                <Image
+                  className="inline-block"
+                  src={cloudIcon}
+                  alt="current weather icon"
+                  width="20"
+                  height="20"
+                  blurDataURL="blur"
+                  priority="true"
+                />
+                <figcaption className="pl-2">
+                  Clouds: {weatherData.current.clouds}%
+                </figcaption>
+              </figure>
             </div>
           </div>
 
