@@ -15,8 +15,8 @@ export default function Home() {
   const [searchInput, setSearchInput] = useState({
     city: "",
   });
-const [checkInput, setCheckInput] = useState(false);
-  
+  const [checkInput, setCheckInput] = useState(false);
+
   const { getGeoCodeFunc, foreCastWeather } = useGeoCode();
 
   const handleSearchInputChange = (e) => {
@@ -31,6 +31,7 @@ const [checkInput, setCheckInput] = useState(false);
       console.log("foreCast: ", foreCast);
       setCheckInput(false);
       setWeatherData(foreCast.data);
+      setSearchInput((prevState) => ({ ...prevState, city: "" }));
     } else {
       console.log("error :>> ");
       return setCheckInput(true);
@@ -60,10 +61,18 @@ const [checkInput, setCheckInput] = useState(false);
                 handleSearchInputChange={handleSearchInputChange}
                 searchInput={searchInput}
               />
-              {checkInput && <div className="text-red-600 text-center font-bold">Please check the given place name</div>}
+              {checkInput && (
+                <p className="aler-box text-red-600 text-center font-bold">
+                  Please check the given place name
+                </p>
+              )}
             </div>
             <div className="icon-con border-2">
-              <div>Monday, 16:00</div>
+              <p className="city-name-box text-center">
+                {weatherData.timezone.substring(
+                  weatherData.timezone.indexOf("/") + 1
+                )}
+              </p>
 
               <Image
                 className="inline-block"
