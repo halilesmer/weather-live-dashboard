@@ -15,6 +15,7 @@ export default function Home() {
   const [searchInput, setSearchInput] = useState({
     city: "",
   });
+  
   const { getGeoCodeFunc, foreCastWeather } = useGeoCode();
 
   const handleSearchInputChange = (e) => {
@@ -49,16 +50,26 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {weatherData && (
-        <main className="main-con grid gap-0 grid-cols-1 sm:grid-cols-2 grid-rows-1">
-          <div className="today-con grid gap-1 grid-cols-1 grid-rows-3 gap-y-1 border-2 border-orange-300">
-            <div className="border-2">
+        <main className="main-con grid gap-0 grid-cols-1 sm:grid-cols-2  auto-rows-auto">
+          <div className="today-con grid gap-1 grid-cols-1  gap-y-1 auto-rows-auto border-2 border-orange-300">
+            <div className="search-bar-con border-2">
               <Searchbar
                 handleGeoCodeClick={handleGeoCodeClick}
                 handleSearchInputChange={handleSearchInputChange}
                 searchInput={searchInput}
               />
             </div>
-            <div className="border-2">
+            <div className="icon-con border-2">
+              <div>Monday, 16:00</div>
+
+              <Image
+                className="inline-block"
+                src={`https://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`}
+                alt="logo"
+                width="90"
+                height="90"
+                blurDataURL="blur"
+              />
               <div>{weatherData.current.temp} C</div>
               <div>Monday, 16:00</div>
             </div>
