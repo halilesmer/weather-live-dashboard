@@ -67,23 +67,27 @@ export default function Home() {
                 </p>
               )}
             </div>
-            <div className="icon-con border-2">
-              <p className="city-name-box text-center">
+            <div className="today-con-icon-box border-2">
+              <p className="today-con-city-name-box text-center">
                 {weatherData.timezone.substring(
                   weatherData.timezone.indexOf("/") + 1
                 )}
               </p>
 
-              <Image
-                className="inline-block"
-                src={`https://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`}
-                alt="logo"
-                width="90"
-                height="90"
-                blurDataURL="blur"
-                priority="true"
-              />
-              <div>{weatherData.current.temp} C</div>
+              <figure className="today-con-icon-box text-center">
+                <Image
+                  className="inline-block"
+                  src={`https://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`}
+                  alt="current weather icon"
+                  width="150"
+                  height="150"
+                  blurDataURL="blur"
+                  priority="true"
+                />
+              </figure>
+              <div className="today-con-temp-box text-5xl">
+                {Math.round(weatherData.current.temp)} <sup>°C</sup>
+              </div>
               <div>Monday, 16:00</div>
             </div>
             <div className="border-2">
