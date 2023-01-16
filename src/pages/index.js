@@ -5,12 +5,13 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import Searchbar from "@/components/Searchbar";
+import moment from "moment";
 import useGeoCode from "@/utils/useGeoCode";
+import useTime from "@/utils/useTime";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
   const [weatherData, setWeatherData] = useState(null);
   const [searchInput, setSearchInput] = useState({
     city: "",
@@ -18,6 +19,7 @@ export default function Home() {
   const [checkInput, setCheckInput] = useState(false);
 
   const { getGeoCodeFunc, foreCastWeather } = useGeoCode();
+  const { getHourMin } = useTime();
 
   const handleSearchInputChange = (e) => {
     setSearchInput((prevState) => ({ ...prevState, city: e.target.value }));
@@ -53,8 +55,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {weatherData && (
-        <main className="main-con grid gap-0 grid-cols-1 sm:grid-cols-2  auto-rows-auto">
-          <div className="today-con grid gap-1 grid-cols-1  gap-y-1 auto-rows-auto border-2 border-orange-300">
+        <main className="main-con grid gap-0 grid-cols-1 sm:grid-cols-2  auto-rows-auto pr-3 pl-3">
+          <div className="today-con grid gap-1 grid-cols-1  gap-y-1 auto-rows-auto border-2">
             <div className="search-bar-con border-2">
               <Searchbar
                 handleGeoCodeClick={handleGeoCodeClick}
@@ -85,10 +87,15 @@ export default function Home() {
                   priority="true"
                 />
               </figure>
-              <div className="today-con-temp-box text-5xl">
+              <div className="today-con-temp-box text-5xl mt-2">
                 {Math.round(weatherData.current.temp)} <sup>°C</sup>
               </div>
-              <div>Monday, 16:00</div>
+              <div className="today-con-current-time-box mt-2 mb-1">
+                <span>{moment().format("dddd")}</span>{" "}
+                <span className="text-slate-">
+                  {getHourMin(weatherData.current.dt)}
+                </span>
+              </div>
             </div>
             <div className="border-2">
               <div>{searchInput.city}</div>
