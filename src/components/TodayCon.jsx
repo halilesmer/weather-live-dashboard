@@ -1,27 +1,21 @@
+import React, { useContext } from "react";
+
+import { AppContext } from "@/context/AppContext";
 import Image from "next/image";
-import React from "react";
 import SearchBarCon from "./SearchBarCon";
 import cloudIcon from "../../public/cloud-icon.png";
 import humidityIcon from "../../public/humidity-icon.png";
 import moment from "moment";
 import useTime from "@/utils/useTime";
 
-const TodayCon = ({ weatherData,
-  handleGeoCodeClick
-  , handleSearchInputChange
-  , searchInput
-  , checkInput }) => {
+const TodayCon = () => {
+  const { weatherData } = useContext(AppContext)
   const { getHourMin } = useTime();
 
-  console.log("weatherData: ", weatherData);
+  // console.log("weatherData: ", weatherData);
   return (
     <div className="today-con grid gap-1 grid-cols-1  gap-y-1 auto-rows-auto pb-6">
-      <SearchBarCon
-        handleGeoCodeClick={handleGeoCodeClick}
-        handleSearchInputChange={handleSearchInputChange}
-        searchInput={searchInput}
-        checkInput={checkInput}
-      />
+      <SearchBarCon />
 
 
 
@@ -99,11 +93,6 @@ const TodayCon = ({ weatherData,
           </figure>
         </div>
       </div>
-
-
-
-
-
     </div>
   );
 };

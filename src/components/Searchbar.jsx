@@ -1,11 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 
+import { AppContext } from '../context/AppContext';
 import Image from "next/image";
 import localizeIcon from "../../public/localize-50.png";
 import searchIcon from "../../public/search-30.png";
 
-const SearchBar = ({ handleGeoCodeClick,handleSearchInputChange, searchInput }) => {
+const SearchBar = () => {
   const searchField = useRef(null);
+  const { handleGeoCodeClick, handleSearchInputChange, searchInput } = useContext(AppContext)
 
   useEffect(() => {
     searchField.current.focus();
@@ -20,7 +22,7 @@ const SearchBar = ({ handleGeoCodeClick,handleSearchInputChange, searchInput }) 
             alt="logo"
             width="15"
             height="15"
-            onClick={()=>handleGeoCodeClick()}
+            onClick={() => handleGeoCodeClick()}
           />
           <input
             ref={searchField}

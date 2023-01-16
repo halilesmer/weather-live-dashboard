@@ -1,19 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+
+import { AppContext } from "../context/AppContext";
 import SearchBar from "./SearchBar";
 
-const SearchBarCon = ({
-  handleGeoCodeClick,
-  handleSearchInputChange,
-  searchInput, 
-  checkInput
-}) => {
+const SearchBarCon = () => {
+  const { checkInput } = useContext(AppContext);
   return (
     <div className="search-bar-con border-2">
-      <SearchBar
-        handleGeoCodeClick={handleGeoCodeClick}
-        handleSearchInputChange={handleSearchInputChange}
-        searchInput={searchInput}
-      />
+      <SearchBar />
       {checkInput && (
         <p className="aler-box text-red-600 text-center font-bold">
           Please check the given place name

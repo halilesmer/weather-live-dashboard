@@ -1,49 +1,30 @@
 // import styles from '@/styles/Home.module.css'
-import { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
+import { AppContext } from "@/context/AppContext";
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import TodayCon from "@/components/TodayCon";
 import { data } from "@/data";
-import useGeoCode from "@/utils/useGeoCode";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const [weatherData, setWeatherData] = useState(null);
-  const [searchInput, setSearchInput] = useState({
-    city: "",
-  });
-  const [checkInput, setCheckInput] = useState(false);
-
-  const { getGeoCodeFunc, foreCastWeather } = useGeoCode();
-
-  const handleSearchInputChange = (e) => {
-    setSearchInput((prevState) => ({ ...prevState, city: e.target.value }));
-  };
-  const handleGeoCodeClick = async (cityString) => {
-    const city = !searchInput.city ? { city: cityString } : searchInput;
-    if (city.city) {
-      const geoData = await getGeoCodeFunc(city);
-      if (geoData.length < 1) return setCheckInput(true);
-      const foreCast = await foreCastWeather(geoData[0].lat, geoData[0].lon);
-      console.log("foreCast: ", foreCast);
-      setCheckInput(false);
-      setWeatherData(foreCast.data);
-      setSearchInput((prevState) => ({ ...prevState, city: "" }));
-    } else {
-      console.log("error :>> ");
-      return setCheckInput(true);
-    }
-  };
+  const {
+    handleSearchInputChange,
+    handleGeoCodeClick,
+    checkInput,
+    weatherData,
+    searchInput,
+  } = useContext(AppContext);
 
   useEffect(() => {
     handleGeoCodeClick("berlin");
     //eslint-disable-next-line
   }, []);
-  console.log("searchInput: ", searchInput);
-  console.log("weatherData", weatherData);
+  // console.log("searchInput: ", searchInput);
+  // console.log("weatherData", weatherData);
   return (
     <>
       <Head>
@@ -54,13 +35,7 @@ export default function Home() {
       </Head>
       {weatherData && (
         <main className="main-con grid gap-0 grid-cols-1 sm:grid-cols-2  auto-rows-auto pr-3 pl-3">
-          <TodayCon
-            weatherData={weatherData}
-            handleGeoCodeClick={handleGeoCodeClick}
-            handleSearchInputChange={handleSearchInputChange}
-            searchInput={searchInput}
-            checkInput={checkInput}
-          />
+          <TodayCon          />
 
           <div className="details-con grid gap-1 grid-cols-1 grid-rows-4">
             <div className="border-2">B1</div>

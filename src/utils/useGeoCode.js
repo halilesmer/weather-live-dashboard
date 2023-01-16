@@ -7,7 +7,7 @@ export default function useGeoCode() {
     try {
       const response = await fetch(endpoint);
       const results = await response.json();
-      console.log("results: ", results);
+      // console.log("results: ", results);
 
       return results;
     } catch (error) {
