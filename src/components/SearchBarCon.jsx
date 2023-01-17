@@ -6,7 +6,7 @@ import SearchBar from "./SearchBar";
 const SearchBarCon = () => {
   const { IsSearchInputTrue } = useContext(AppContext);
   return (
-    <div className="search-bar-con border-2">
+    <div className="search-bar-con pt-3 pb-2">
       <SearchBar />
       {IsSearchInputTrue && (
         <p className="aler-box text-red-600 text-center font-bold">
