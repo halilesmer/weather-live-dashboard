@@ -7,7 +7,7 @@ import searchIcon from "../../public/search-30.png";
 
 const SearchBar = () => {
   const searchField = useRef(null);
-  const { handleGeoCodeClick, handleSearchInputChange, searchInput } = useContext(AppContext)
+  const { handleGeoCodeClick, handleSearchInputChange, searchInput } = useContext(AppContext);
 
   useEffect(() => {
     searchField.current.focus();

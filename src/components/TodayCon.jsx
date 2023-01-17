@@ -14,12 +14,15 @@ const TodayCon = () => {
 
   // console.log("weatherData: ", weatherData);
   return (
-    <div className="today-con grid gap-1 grid-cols-1  gap-y-1 auto-rows-auto pb-6">
+    <div className="today-con grid gap-1 grid-cols-1  gap-y-1 auto-rows-auto pb-6 bg-[#f6f6f8] sm:bg-[#ffffff]">
       <SearchBarCon />
 
       <div className="today-con-icon-box ">
         <p className="today-con-city-name-box text-center">
-          {(searchInput.success && weatherData) ? searchInput.success.substring(0, 1).toUpperCase() + searchInput.success.substring(1).toLowerCase() : 'Berlin'}
+          {searchInput.success && weatherData
+            ? searchInput.success.substring(0, 1).toUpperCase() +
+              searchInput.success.substring(1).toLowerCase()
+            : "Berlin"}
         </p>
 
         <figure className="today-con-icon-box text-center">
@@ -37,12 +40,11 @@ const TodayCon = () => {
           {Math.round(weatherData.current.temp)} <sup>°C</sup>
         </div>
         <div className="today-con-current-time-box mt-2 mb-1">
-          <span>{moment().format("dddd")}</span>{" "}
-          <span className="text-slate-">
+          <span >{moment().format("dddd")}, </span>{" "}
+          <span className="text-slate-400">
             {getHourMin(weatherData.current.dt)}
           </span>
         </div>
-
 
         <div className="today-con-description ">
           <figure className="today-con_description_icon flex mt-2">

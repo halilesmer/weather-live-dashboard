@@ -7,21 +7,23 @@ import Image from "next/image";
 import { Inter } from "@next/font/google";
 import TodayCon from "@/components/TodayCon";
 import { data } from "@/data";
+import sunrise from "../../public/sunrise_icon.svg";
+import sunset from "../../public/sunset_icon.svg";
+import useTime from "@/utils/useTime";
+import uvGauge from "../../public/uv-gauge.png";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const {
-    handleGeoCodeClick,
-    weatherData,
-  } = useContext(AppContext);
+  const { handleGeoCodeClick, weatherData } = useContext(AppContext);
+  const { getHourMin } = useTime();
 
   useEffect(() => {
     handleGeoCodeClick("berlin");
     //eslint-disable-next-line
   }, []);
 
-  // console.log("weatherData", weatherData);
+  console.log("weatherData", weatherData);
   return (
     <>
       <Head>
@@ -31,14 +33,119 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {weatherData && (
-        <main className="main-con grid gap-0 grid-cols-1 sm:grid-cols-2  auto-rows-auto pr-3 pl-3">
-          <TodayCon          />
+        <main className="main-con grid gap-0 grid-cols-1 sm:grid-cols-2  auto-rows-auto pr-3 pl-3 pb-5">
+          <TodayCon />
 
-          <div className="details-con grid gap-1 grid-cols-1 grid-rows-4">
-            <div className="border-2">B1</div>
-            <div className="border-2">B2</div>
-            <div className="border-2">B3</div>
-            <div className="border-2">B4</div>
+          <div className="todays-highlights_con grid gap-4 grid-cols-1 auto-rows-auto justify-items-center items-center w-full h-auto text-center bg-[#f6f6f8] pt-4 pb-4">
+            <div className="todays-highlights_header-con pb-4 pt-3 text-center text-3xl bg-[#ffffff] w-full sm:w-auto">
+              <p>Today&apos;s Highlights</p>
+            </div>
+            <div className="todays-highlights_box todays-highlights_uv-index_box grid  bg-[#ffffff] w-56 h-48 rounded-2xl items-center">
+              <div className="todays-highlights_box-header text-left  pl-8 text-slate-400">
+                UV Index
+              </div>
+
+              <figure className="today-con-icon ">
+                <Image
+                  className="inline-block "
+                  src={uvGauge}
+                  alt="current weather icon"
+                  width="160"
+                  height="160"
+                  blurDataURL="blur"
+                  priority="true"
+                />
+              </figure>
+            </div>
+            <div className="todays-highlights_box todays-highlights_wind-speed_box grid  bg-[#ffffff] w-56 h-48 rounded-2xl items-center pl-6">
+              <div className="todays-highlights_box-header text-left  text-slate-400">
+                Wind Status
+              </div>
+
+              <div className="todays-highlights_description w-fit place-self-start	">
+                <span className=" text-4xl mr-4">
+                  {(Number(weatherData.current.wind_speed) / 0.27778).toFixed(
+                    2
+                  )}
+                </span>
+                km/h
+              </div>
+              <div className="todays-highlights_box_comment text-left">
+                {Number.parseInt(weatherData.current.wind_deg)}
+              </div>
+              {/* wind_deg */}
+            </div>
+            <div className="todays-highlights_box todays-highlights_sunset-sunrise_box grid  bg-[#ffffff] w-56 h-48 rounded-2xl items-center">
+              <div className="todays-highlights_box-header text-left pl-6 text-slate-400">
+                Sunrise & Sunset
+              </div>
+
+              <div className="todays-highlights_description grid auto-rows-auto grid-cols-2 items-center w-fit pl-6">
+                {" "}
+                <figure className="today-con-icon text-center ">
+                  <Image
+                    className="inline-block "
+                    src={sunrise}
+                    alt="current weather icon"
+                    width="40"
+                    height="40"
+                    blurDataURL="blur"
+                    priority="true"
+                  />
+                </figure>
+                <div className="todays-highlights_sunrise-time ml-2">
+                  {" "}
+                  {getHourMin(weatherData.current.sunrise)}
+                </div>{" "}
+                <figure className="todays-highlights_sunset-icon text-center ">
+                  <Image
+                    className="inline-block "
+                    src={sunset}
+                    alt="current weather icon"
+                    width="40"
+                    height="40"
+                    blurDataURL="blur"
+                    priority="true"
+                  />
+                </figure>
+                <div className="todays-highlights_sunset-time ml-2">
+                  {" "}
+                  {getHourMin(weatherData.current.sunset)}
+                </div>
+              </div>
+            </div>
+
+            <div className="todays-highlights_box todays-highlights_visibility_box grid  bg-[#ffffff] w-56 h-48 rounded-2xl items-center pl-6">
+              <div className="todays-highlights_box-header text-left  text-slate-400">
+                Visibility
+              </div>
+
+              <div className="todays-highlights_description w-fit 	">
+                <span className=" text-4xl mr-4">
+                  {Number.parseInt(weatherData.current.visibility) / 1000}
+                </span>
+                km
+              </div>
+              <div className="todays-highlights_box_comment text-left">
+                Normal
+              </div>
+            </div>
+
+            <div className="todays-highlights_box todays-highlights_humidity_box grid  bg-[#ffffff] w-56 h-48 rounded-2xl items-center pl-6">
+              <div className="todays-highlights_box-header text-left  text-slate-400">
+                Humidity
+              </div>
+
+              <div className="todays-highlights_description w-fit ">
+                <span className=" text-4xl mr-4">
+                  {weatherData.current.humidity}
+                </span>
+                %
+              </div>
+              <div className="todays-highlights_box_comment text-left">
+                Normal
+              </div>
+            </div>
           </div>
         </main>
       )}

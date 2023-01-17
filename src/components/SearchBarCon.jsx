@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import { AppContext } from "../context/AppContext";
-import SearchBar from "./SearchBar.jsx";
+import SearchBar from "./SearchBar";
 
 const SearchBarCon = () => {
   const { IsSearchInputTrue } = useContext(AppContext);

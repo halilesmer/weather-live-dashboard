@@ -2,7 +2,7 @@ export default function useGeoCode() {
   const API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 
   const getGeoCodeFunc = async (searchInput) => {
-    const endpoint = `http://api.openweathermap.org/geo/1.0/direct?q=${searchInput.city}&limit=1&appid=${API_KEY}`;
+    const endpoint = `https://api.openweathermap.org/geo/1.0/direct?q=${searchInput.city}&limit=1&appid=${API_KEY}`;
     
     try {
       const response = await fetch(endpoint);
