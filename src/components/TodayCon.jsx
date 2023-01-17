@@ -6,11 +6,11 @@ import SearchBarCon from "./SearchBarCon";
 import cloudIcon from "../../public/cloud-icon.png";
 import humidityIcon from "../../public/humidity-icon.png";
 import moment from "moment";
-import useTime from "@/utils/useTime";
+import useConvert from "@/utils/useConvert";
 
 const TodayCon = () => {
   const { weatherData, searchInput, } = useContext(AppContext)
-  const { getHourMin } = useTime();
+  const { getHourMin } = useConvert();
 
   // console.log("weatherData: ", weatherData);
   return (

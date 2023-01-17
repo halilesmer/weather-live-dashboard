@@ -9,14 +9,15 @@ import TodayCon from "@/components/TodayCon";
 import { data } from "@/data";
 import sunrise from "../../public/sunrise_icon.svg";
 import sunset from "../../public/sunset_icon.svg";
-import useTime from "@/utils/useTime";
+import useConvert from "@/utils/useConvert";
 import uvGauge from "../../public/uv-gauge.png";
+import windIcon from "../../public/wind-direction.png";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const { handleGeoCodeClick, weatherData } = useContext(AppContext);
-  const { getHourMin } = useTime();
+  const { getHourMin, convertWindDirect } = useConvert();
 
   useEffect(() => {
     handleGeoCodeClick("berlin");
@@ -70,10 +71,24 @@ export default function Home() {
                 </span>
                 km/h
               </div>
-              <div className="todays-highlights_box_comment text-left">
-                {Number.parseInt(weatherData.current.wind_deg)}
+              <div className="todays-highlights_box_comment grid auto-rows-auto grid-cols-2 items-center w-fit text-left">
+                <figure className="today-con-icon  ">
+                  <Image
+                    className="inline-block "
+                    src={windIcon}
+                    alt="current weather icon"
+                    width="20"
+                    height="20"
+                    blurDataURL="blur"
+                    priority="true"
+                  />
+                </figure>
+                <span className="todays-highlights_wind-dir ml-1 pt-1">
+                  {convertWindDirect(
+                    Number.parseInt(weatherData.current.wind_deg)
+                  )}
+                </span>
               </div>
-              {/* wind_deg */}
             </div>
             <div className="todays-highlights_box todays-highlights_sunset-sunrise_box grid  bg-[#ffffff] w-56 h-48 rounded-2xl items-center">
               <div className="todays-highlights_box-header text-left pl-6 text-slate-400">
@@ -82,7 +97,7 @@ export default function Home() {
 
               <div className="todays-highlights_description grid auto-rows-auto grid-cols-2 items-center w-fit pl-6">
                 {" "}
-                <figure className="today-con-icon text-center ">
+                <figure className="today-con-icon text-left ">
                   <Image
                     className="inline-block "
                     src={sunrise}
@@ -97,7 +112,7 @@ export default function Home() {
                   {" "}
                   {getHourMin(weatherData.current.sunrise)}
                 </div>{" "}
-                <figure className="todays-highlights_sunset-icon text-center ">
+                <figure className="todays-highlights_sunset-icon text-left ">
                   <Image
                     className="inline-block "
                     src={sunset}
@@ -115,22 +130,6 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="todays-highlights_box todays-highlights_visibility_box grid  bg-[#ffffff] w-56 h-48 rounded-2xl items-center pl-6">
-              <div className="todays-highlights_box-header text-left  text-slate-400">
-                Visibility
-              </div>
-
-              <div className="todays-highlights_description w-fit 	">
-                <span className=" text-4xl mr-4">
-                  {Number.parseInt(weatherData.current.visibility) / 1000}
-                </span>
-                km
-              </div>
-              <div className="todays-highlights_box_comment text-left">
-                Normal
-              </div>
-            </div>
-
             <div className="todays-highlights_box todays-highlights_humidity_box grid  bg-[#ffffff] w-56 h-48 rounded-2xl items-center pl-6">
               <div className="todays-highlights_box-header text-left  text-slate-400">
                 Humidity
@@ -141,6 +140,22 @@ export default function Home() {
                   {weatherData.current.humidity}
                 </span>
                 %
+              </div>
+              <div className="todays-highlights_box_comment text-left">
+                Normal
+              </div>
+            </div>
+
+            <div className="todays-highlights_box todays-highlights_visibility_box grid  bg-[#ffffff] w-56 h-48 rounded-2xl items-center pl-6">
+              <div className="todays-highlights_box-header text-left  text-slate-400">
+                Visibility
+              </div>
+
+              <div className="todays-highlights_description w-fit 	">
+                <span className=" text-4xl mr-4">
+                  {Number.parseInt(weatherData.current.visibility) / 1000}
+                </span>
+                km
               </div>
               <div className="todays-highlights_box_comment text-left">
                 Normal
