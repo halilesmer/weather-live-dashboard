@@ -29,6 +29,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       {weatherData && (
         <main className="main-con grid gap-0 md:grid-cols-[30%_70%] auto-rows-auto grid-flow-row pr-3 pl-3 pb-5">
           <TodayCon />
