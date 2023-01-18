@@ -21,7 +21,9 @@ const TdConDescrBox = () => {
           priority="true"
         />
         <figcaption className="pl-2">
-          {weatherData.current.weather[0].description}
+          {weatherData.current.weather[0].description.substring(0, 1).toUpperCase() +
+            weatherData.current.weather[0].description.substring(1).toLowerCase()}
+
         </figcaption>
       </figure>
 

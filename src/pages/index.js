@@ -6,6 +6,7 @@ import Head from "next/head";
 import { Inter } from "@next/font/google";
 import TdHighlCon from "@/components/TdHighlCon";
 import TodayCon from "@/components/TodayCon";
+import WeekCon from "@/components/WeekCon";
 import { data } from "@/data";
 import useConvert from "@/utils/useConvert";
 
@@ -32,6 +33,8 @@ export default function Home() {
       {weatherData && (
         <main className="main-con grid gap-0 md:grid-cols-12 auto-rows-auto grid-flow-row pr-3 pl-3 pb-5">
           <TodayCon />
+
+          <WeekCon />
 
           <TdHighlCon />
         </main>

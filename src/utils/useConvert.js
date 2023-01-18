@@ -14,19 +14,17 @@ export default function useConvert() {
     return time;
   }
 
+  function getCurrDay(timeStr) {
+    const convertTime = formatTime(timeStr);
+
+    const currDay = moment(convertTime).format("dddd");
+    return currDay;
+  }
+
   function convertWindDirect(inputNumber) {
     let degrees = inputNumber;
     // Define array of directions
-    let directions = [
-      "North",
-      "NE",
-      "East",
-      "SE",
-      "South",
-      "SW",
-      "West",
-      "NW",
-    ];
+    let directions = ["North", "NE", "East", "SE", "South", "SW", "West", "NW"];
 
     // Split into the 8 directions
     degrees = (degrees * 8) / 360;
@@ -37,8 +35,7 @@ export default function useConvert() {
     // Ensure it's within 0-7
     degrees = (degrees + 8) % 8;
 
-    console.log(directions[degrees]);
     return directions[degrees];
   }
-  return { getHourMin, convertWindDirect };
+  return { getHourMin, convertWindDirect, getCurrDay };
 }

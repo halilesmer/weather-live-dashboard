@@ -17,7 +17,7 @@ export default function useGeoCode() {
   };
 
   const foreCastWeather = async (lat, lon) => {
-    const forecastEndpoint = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&lang=de&units=metric&appid=${API_KEY}`;
+    const forecastEndpoint = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&lang=en&units=metric&appid=${API_KEY}`;
     let result = { data: "", errors: "" };
     try {
       const response = await fetch(forecastEndpoint);
