@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 import { AppContext } from "../context/AppContext";
 import Image from "next/image";
@@ -13,6 +13,7 @@ const SearchBar = () => {
     useEffect(() => {
         searchField.current.focus();
     }, []);
+
     return (
         <>
             <div className="today-con-search flex justify-center  pt-1 border-1">
@@ -32,6 +33,11 @@ const SearchBar = () => {
                         value={searchInput.city}
                         onChange={handleSearchInputChange}
                         placeholder="Search for Places"
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                                handleGeoCodeClick()
+                            }
+                        }}
                     />
                     <Image
                         className="inline-block"
