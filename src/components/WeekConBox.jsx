@@ -9,7 +9,7 @@ const WeekConBox = () => {
   const { getCurrDay } = useConvert();
 
   return (
-    <div className=" week-con_box-con grid md:col-span-8 gap-7  justify-items-center items-center grid-cols-[repeat(auto-fill,minmax(60px,1fr))] w-full h-auto text-center bg-[#f6f6f8] pt-4 pb-4 pr-4 pl-4">
+    <div className=" week-con_box-con grid gap-7  justify-items-center items-center grid-cols-[repeat(auto-fit,minmax(60px,1fr))]  w-full h-auto text-center bg-[#f6f6f8] pt-4 pb-4 pr-4 pl-4">
       {weatherData.daily.slice(1).map((data) => {
         return (
           <div

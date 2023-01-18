@@ -14,7 +14,6 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const { handleGeoCodeClick, weatherData } = useContext(AppContext);
-  const { getHourMin, convertWindDirect } = useConvert();
 
   useEffect(() => {
     handleGeoCodeClick("berlin");
@@ -31,12 +30,14 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {weatherData && (
-        <main className="main-con grid gap-0 md:grid-cols-12 auto-rows-auto grid-flow-row pr-3 pl-3 pb-5">
+        <main className="main-con grid gap-0 md:grid-cols-[30%_70%] auto-rows-auto grid-flow-row pr-3 pl-3 pb-5">
           <TodayCon />
 
-          <WeekCon />
+          <div className="grid-div-row-2 grid md:grid-rows-[50% 50%] md:h-[90vh] md:col-start-2 md:col-end-auto md:row-start-1 md: row-end-auto content-center">
+            <WeekCon />
 
-          <TdHighlCon />
+            <TdHighlCon />
+          </div>
         </main>
       )}
       {!weatherData && <div>Loading...</div>}

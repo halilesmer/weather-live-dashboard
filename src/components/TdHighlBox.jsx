@@ -9,12 +9,12 @@ import uvGauge from "../../public/uv-gauge.png";
 import windIcon from "../../public/wind-direction.png";
 
 const TdHighlBox = () => {
-    const { handleGeoCodeClick, weatherData } = useContext(AppContext);
+    const {  weatherData } = useContext(AppContext);
     const { getHourMin, convertWindDirect } = useConvert();
 
 
     return (
-        <div className=" todays-highlights_box-con grid md:col-span-8 gap-5  justify-items-center items-center grid-cols-[repeat(auto-fill,minmax(240px,1fr))] w-full h-auto text-center bg-[#f6f6f8] pt-4 pb-4">
+        <div className=" todays-highlights_box-con grid md:col-span-5 gap-5  justify-items-center items-center grid-cols-[repeat(auto-fit,minmax(240px,1fr))]   w-full h-auto text-center bg-[#f6f6f8] pt-4 pb-4">
             <div className="todays-highlights_box todays-highlights_uv-index_box grid  bg-[#ffffff] w-56 h-48 rounded-2xl items-center">
                 <div className="todays-highlights_box-header text-left  pl-8 text-slate-400">
                     UV Index
