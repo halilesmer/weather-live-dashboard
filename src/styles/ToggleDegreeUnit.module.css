@@ -44,19 +44,19 @@
 }
 
 .inner:before {
+    content: "°F";
+    padding-right: 20px;
+    background-color: #bbb;
+    color: #fff;
+    text-align: center;
+}
+.inner:after {
     content: "°C";
-    padding-left: 10px;
+    padding-left: 40px;
     background-color: #060;
     color: #fff;
 }
 
-.inner:after {
-    content: "°F";
-    padding-right: 10px;
-    background-color: #bbb;
-    color: #fff;
-    text-align: right;
-}
 
 .switch {
     display: block;

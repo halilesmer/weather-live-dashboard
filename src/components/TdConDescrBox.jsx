@@ -6,7 +6,7 @@ import cloudIcon from "../../public/cloud-icon.png";
 import humidityIcon from "../../public/humidity-icon.png";
 
 const TdConDescrBox = () => {
-  const { weatherData, searchInput } = useContext(AppContext);
+  const { weatherData } = useContext(AppContext);
 
   return (
     <div className="today-con_data-con_description-box ">

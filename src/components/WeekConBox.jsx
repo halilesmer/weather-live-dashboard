@@ -5,8 +5,9 @@ import Image from "next/image";
 import useConvert from "@/utils/useConvert";
 
 const WeekConBox = () => {
-  const { weatherData } = useContext(AppContext);
+  const { weatherData, isUnitCelsius } = useContext(AppContext);
   const { getCurrDay } = useConvert();
+
 
   return (
     <div className=" week-con_box-con grid gap-7  justify-items-center items-center grid-cols-[repeat(auto-fit,minmax(60px,1fr))]  w-full h-auto text-center bg-[#f6f6f8] pt-4 pb-4 pr-4 pl-4">
@@ -33,8 +34,15 @@ const WeekConBox = () => {
             </figure>
 
             <div className="week-con_sunset-time text-center">
-              {" "}
-              <span className="">{Math.round(data.temp.max)}° </span>
+              {isUnitCelsius ?
+                <span >{(Number(Math.round(data.temp.max)))
+                }° </span>
+                :
+                <span>
+                  {(Number(Math.round(data.temp.max)) * 1.8) + 32}°
+                </span>
+              }
+
               <span className="text-slate-400">
                 {" "}
                 {Math.round(data.temp.min)}°

@@ -7,7 +7,7 @@ import moment from "moment";
 import useConvert from "@/utils/useConvert";
 
 const TdDataBox = () => {
-    const { weatherData, searchInput, } = useContext(AppContext)
+    const { weatherData, searchInput, isUnitCelsius, } = useContext(AppContext)
     const { getHourMin } = useConvert();
 
     return (
@@ -32,7 +32,19 @@ const TdDataBox = () => {
             </figure>
             <div className="today-con_data-con_info-box grid ml-16">
                 <div className="today-con_data-con_temp-box text-5xl mt-2">
-                    {Math.round(weatherData.current.temp)} <sup>°C</sup>
+                    {isUnitCelsius ?
+                        <span>
+                            {Math.round(weatherData.current.temp)}
+                            <sup>°C</sup>
+
+                        </span>
+
+                        :
+                        <span>
+
+                            {(Number(Math.round(weatherData.current.temp)) * 1.8) + 32} <sup>°F</sup>
+                        </span>
+                    }
                 </div>
                 <div className="today-con_data-con_current-time-box mt-2 mb-1">
                     <span >{moment().format("dddd")}, </span>{" "}

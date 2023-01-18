@@ -7,6 +7,8 @@ const AppContext = createContext();
 const AppProvider = (props) => {
   const [IsSearchInputTrue, setIsSearchInputTrue] = useState(false);
   const [weatherData, setWeatherData] = useState(null);
+  const [isUnitCelsius, setIsUnitCelsius] = useState(true);
+
   const [searchInput, setSearchInput] = useState({
     city: "",
   });
@@ -24,19 +26,29 @@ const AppProvider = (props) => {
       // console.log("foreCast: ", foreCast);
       setIsSearchInputTrue(false);
       setWeatherData(foreCast.data);
-      setSearchInput((prevState) => ({ ...prevState, city: "", success: searchInput.city }));
+      setSearchInput((prevState) => ({
+        ...prevState,
+        city: "",
+        success: searchInput.city,
+      }));
     } else {
       console.log("error :>> ");
       return setIsSearchInputTrue(true);
     }
   };
 
+  const handleToggleDegreeClick = () => {
+    setIsUnitCelsius((prevState) => !prevState);
+  };
+
   const value = {
     handleSearchInputChange,
     handleGeoCodeClick,
+    handleToggleDegreeClick,
     IsSearchInputTrue,
     weatherData,
     searchInput,
+    isUnitCelsius,
   };
 
   return (
