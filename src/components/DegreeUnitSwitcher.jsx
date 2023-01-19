@@ -1,17 +1,18 @@
 import React, { useContext } from "react";
 
 import { AppContext } from "@/context/AppContext";
-import styles from '@/styles/ToggleDegreeUnit.module.css'
+import styles from '@/styles/DegreeUnitSwitcher.module.css'
 
-const ToggleDegreeUnit = ({ label }) => {
+// Komponente um das Gradeinheit zw. Celsius und Fahrenheit zu ändern
+const DegreeUnitSwitcher = ({ label }) => {
     label = 'no-label'
-    const { handleToggleDegreeClick } = useContext(AppContext);
+    const { handleDegreeSwitcherClick } = useContext(AppContext);
     return (
         <div className={styles.container} >
 
             <div className={styles.toggle_switch}>
                 <input type="checkbox" className={styles.checkbox}
-                    name='no-label' id='no-label' onClick={handleToggleDegreeClick} />
+                    name='no-label' id='no-label' onClick={handleDegreeSwitcherClick} />
                 <label className={styles.label} htmlFor={label}>
                     <span className={styles.inner} />
                     <span className={styles.switch} />
@@ -21,4 +22,4 @@ const ToggleDegreeUnit = ({ label }) => {
     );
 };
 
-export default ToggleDegreeUnit;
+export default DegreeUnitSwitcher;

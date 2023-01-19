@@ -7,25 +7,25 @@ export default function useConvert() {
     // console.log("date: ", date);
     return date;
   }
-
+  // Funktion holt nur die Uhrzeit in diesem Format: 00:00
   function getHourMin(timeStr) {
     const getFormattedTime = formatTime(timeStr);
     const time = moment(getFormattedTime).format("hh:mm");
     return time;
   }
 
-  function getCurrDay(timeStr) {
+  // Funktion holt nur den Tagesnamen
+  function getDay(timeStr) {
     const convertTime = formatTime(timeStr);
-
     const currDay = moment(convertTime).format("dddd");
     return currDay;
   }
 
+  // Funktion um aus meteorologischen Windrichtungsgraden, Himmelsrichtungen zu berechnen
   function convertWindDirect(inputNumber) {
     let degrees = inputNumber;
     // Define array of directions
     let directions = ["North", "NE", "East", "SE", "South", "SW", "West", "NW"];
-
     // Split into the 8 directions
     degrees = (degrees * 8) / 360;
 
@@ -37,5 +37,5 @@ export default function useConvert() {
 
     return directions[degrees];
   }
-  return { getHourMin, convertWindDirect, getCurrDay };
+  return { getHourMin, convertWindDirect, getDay };
 }

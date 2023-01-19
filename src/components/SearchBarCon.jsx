@@ -2,17 +2,18 @@ import React, { useContext } from "react";
 
 import { AppContext } from "../context/AppContext";
 import SearchBar from "./SearchBar";
-import ToggleDegreeUnit from "./ToggleDegreeUnit";
 
+// Beinhaltet die Suchfeldkomponente
 const SearchBarCon = () => {
-  const { IsSearchInputTrue } = useContext(AppContext);
+  const { isSearchingFailed } = useContext(AppContext);
   return (
     <div className="search-bar-con pt-3 pb-2">
+
+      { /*'Suchfeldfunktion für die Orte'*/}
       <SearchBar />
 
-      <ToggleDegreeUnit />
-
-      {IsSearchInputTrue && (
+      {/* Warnung bei falscher Eingabe */}
+      {isSearchingFailed && (
         <p className="aler-box text-red-600 text-center font-bold">
           Please check the given place name
         </p>

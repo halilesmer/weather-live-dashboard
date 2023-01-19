@@ -16,6 +16,7 @@ export default function Home() {
   const { handleGeoCodeClick, weatherData } = useContext(AppContext);
 
   useEffect(() => {
+    // Suchparameter, wenn die Seite aufgerufen wird
     handleGeoCodeClick("berlin");
     //eslint-disable-next-line
   }, []);
@@ -31,16 +32,19 @@ export default function Home() {
       </Head>
 
       {weatherData && (
-        <main className="main-con grid gap-0 md:grid-cols-[30%_70%] auto-rows-auto grid-flow-row pr-3 pl-3 pb-5">
+        <main className="main-con grid gap-0 md:grid-cols-[30%_70%] auto-rows-auto grid-flow-row pr-3 pl-3 pb-5 h-[100vh]">
+          {/* Today Container */}
           <TodayCon />
 
-          <div className="grid-div-row-2 grid md:grid-rows-[50% 50%] md:h-[90vh] md:col-start-2 md:col-end-auto md:row-start-1 md: row-end-auto content-center">
+          <div className="grid-div-row-2 grid md:grid-rows-[50% 50%] md:col-start-2 md:col-end-auto md:row-start-1 md: row-end-auto content-center bg-[#f6f6f8]">
+            {/* Week Container */}
             <WeekCon />
-
+            {/* Today Highlights Container */}
             <TdHighlCon />
           </div>
         </main>
       )}
+      {/* Das scheint, wenn noch nicht die Wetterdaten da sind. */}
       {!weatherData && <div>Loading...</div>}
     </>
   );

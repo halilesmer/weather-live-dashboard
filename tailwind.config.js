@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        todaysHighlightsBg: "#30aeff",
+        mainBg: "#f6f6f8",
         boxBg: "#ffffff",
       },
     },
