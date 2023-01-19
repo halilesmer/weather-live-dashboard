@@ -7,7 +7,7 @@ import Head from "next/head";
 import { Inter } from "@next/font/google";
 import NavCon from "@/components/navCon/NavCon";
 import TdHighlCon from "@/components/TdHighlCon";
-import TodayCon from "@/components/TodayCon";
+import TodayCon from "@/components/TodayCon/TodayCon";
 import WeekCon from "@/components/WeekCon";
 
 const inter = Inter({ subsets: ["latin"] });

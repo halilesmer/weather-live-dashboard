@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 
 import { AppContext } from "@/context/AppContext";
 import Image from "next/image";
-import cloudIcon from "../../public/cloud-icon.png";
-import humidityIcon from "../../public/humidity-icon.png";
+import cloudIcon from "../../../public/cloud-icon.png";
+import humidityIcon from "../../../public/humidity-icon.png";
 
 // Today Container Description Box
 const TdConDescrBox = () => {

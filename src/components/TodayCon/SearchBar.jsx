@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useRef, } from "react";
 
-import { AppContext } from "../context/AppContext";
+import { AppContext } from "../../context/AppContext";
 import Image from "next/image";
-import localizeIcon from "../../public/localize-50.png";
-import searchIcon from "../../public/search-30.png";
+import localizeIcon from "../../../public/localize-50.png";
+import searchIcon from "../../../public/search-30.png";
 
 // Suchfeldfunktion für die Orte
 const SearchBar = () => {
@@ -17,8 +17,8 @@ const SearchBar = () => {
     }, []);
 
     return (
-        <div className="today-con-search flex justify-center  pt-1 border-1">
-            <div className="search-con w-fit h-fit flex justify-center items-center align-middle pl-1 pr-1 border border-dashed border-gray-200 rounded-md">
+        <div className="td-con_search-bar-con flex justify-center  pt-1 border-1">
+            <div className=" td-con_search-bar-con_search-bar-box w-fit h-fit flex justify-center items-center align-middle pl-1 pr-1 border border-dashed border-gray-200 rounded-md">
                {/* lupe icon und Suchfunktion */}
                 <Image
                     className="inline-block"

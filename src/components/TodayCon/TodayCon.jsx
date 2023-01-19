@@ -1,5 +1,5 @@
 import SearchBarCon from "./SearchBarCon";
-import TdDataBox from "./TdDataBox";
+import TdConDataBox from "./TdConDataBox";
 
 // Today Container
 const TodayCon = () => {
@@ -10,7 +10,7 @@ const TodayCon = () => {
       <SearchBarCon />
 
       {/* Component - Today Data Box */}
-      <TdDataBox />
+      <TdConDataBox />
     </div>
   );
 };

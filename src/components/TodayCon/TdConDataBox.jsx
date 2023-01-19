@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 
 import { AppContext } from "@/context/AppContext";
-import DegreeUnitSwitcher from './DegreeUnitSwitcher';
+import DegreeUnitSwitcher from '../DegreeUnitSwitcher';
 import Image from "next/image";
 import TdConDescrBox from './TdConDescrBox';
 import moment from "moment";
@@ -9,7 +9,7 @@ import useConvert from "@/utils/useConvert";
 import useWindowSize from '@/utils/useWindowSize';
 
 // Today Container Data Box
-const TdDataBox = () => {
+const TdConDataBox = () => {
     const { weatherData, searchInput, isUnitCelsius, } = useContext(AppContext)
     const { getHourMin } = useConvert();
 
@@ -72,4 +72,4 @@ const TdDataBox = () => {
         </div>)
 }
 
-export default TdDataBox
+export default TdConDataBox

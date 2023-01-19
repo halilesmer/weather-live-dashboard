@@ -6,13 +6,12 @@ import useWindowSize from "@/utils/useWindowSize";
 const NavCon = () => {
     let screenSize = useWindowSize();
     return (
-        // Wenn innere Displaygröße größer ist als angegebener Zahl, erst dann erscheint der  Switchbutton
-
-        <div className="nav-con grid grid-cols-1 grid-flow-col pt-4" >
+        <div className="nav-con  hidden md:grid grid-cols-1 grid-flow-col pt-4" >
+            {/* Wenn innere Displaygröße größer ist als angegebener Zahl, erst dann erscheint der  Switchbutton */}
             {screenSize.width > 768 && <DegreeUnitSwitcher />}
 
+            {/* Das Icon zeigt das Benutzerfoto  */}
             <figure className="nav-con_avatar-icon mr-5">
-                {/* Dieses Icon zeigt die aktuelle Wetterlage */}
                 <Image
                     className="inline-block "
                     src={avatar}
