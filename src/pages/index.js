@@ -6,9 +6,9 @@ import DegreeUnitSwitcher from "@/components/DegreeUnitSwitcher";
 import Head from "next/head";
 import { Inter } from "@next/font/google";
 import NavCon from "@/components/navCon/NavCon";
-import TdHighlCon from "@/components/TdHighlCon";
+import TdHighlCon from "@/components/detailsPage/TdHighlCon";
 import TodayCon from "@/components/TodayCon/TodayCon";
-import WeekCon from "@/components/WeekCon";
+import WeekCon from "@/components/detailsPage/WeekCon";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,7 +35,7 @@ export default function Home() {
           {/* Today Container */}
           <TodayCon />
           {/* content-center */}
-          <div className="grid-div-row-2 grid md:grid-rows-[50% 50%] md:col-start-2 md:col-end-auto md:row-start-1 md: row-end-auto  md:items-stretch bg-[#f6f6f8]">
+          <div className="details-con grid-div-row-2 grid md:grid-rows-[50% 50%] md:col-start-2 md:col-end-auto md:row-start-1 md: row-end-auto  md:items-stretch bg-[#f6f6f8]">
             {/*  Navigation Container*/}
             <NavCon />
 

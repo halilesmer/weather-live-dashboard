@@ -6,7 +6,7 @@ import useWindowSize from "@/utils/useWindowSize";
 const NavCon = () => {
     let screenSize = useWindowSize();
     return (
-        <div className="nav-con  hidden md:grid grid-cols-1 grid-flow-col pt-4" >
+        <div className="details-con_nav-con  hidden md:grid grid-cols-1 grid-flow-col pt-4" >
             {/* Wenn innere Displaygröße größer ist als angegebener Zahl, erst dann erscheint der  Switchbutton */}
             {screenSize.width > 768 && <DegreeUnitSwitcher />}
 

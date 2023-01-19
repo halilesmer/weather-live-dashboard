@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 
 import { AppContext } from "@/context/AppContext";
 import Image from "next/image";
-import sunrise from "../../public/sunrise_icon.svg";
-import sunset from "../../public/sunset_icon.svg";
+import sunrise from "../../../public/sunrise_icon.svg";
+import sunset from "../../../public/sunset_icon.svg";
 import useConvert from "@/utils/useConvert";
-import uvGauge from "../../public/uv-gauge.png";
-import windIcon from "../../public/wind-direction.png";
+import uvGauge from "../../../public/uv-gauge.png";
+import windIcon from "../../../public/wind-direction.png";
 
 // Today Highlights Box
 const TdHighlBox = () => {
@@ -14,7 +14,7 @@ const TdHighlBox = () => {
     const { getHourMin, convertWindDirect } = useConvert();
 
     return (
-        <div className="todays-highlights_box-con grid md:col-span-5 gap-5  justify-items-center items-center grid-cols-[repeat(auto-fit,minmax(240px,1fr))]   w-full h-auto text-center bg-[#f6f6f8] pt-4 pb-4">
+        <div className="details-con_todays-highlights_box-con grid md:col-span-5 gap-5  justify-items-center items-center grid-cols-[repeat(auto-fit,minmax(240px,1fr))]   w-full h-auto text-center bg-[#f6f6f8] pt-4 pb-4">
             <div className="todays-highlights_box todays-highlights_uv-index_box grid  bg-[#ffffff] w-56 h-48 rounded-2xl items-center">
                 {/* Box-Überschrift - UV Index */}
                 <div className="todays-highlights_box-header text-left  pl-8 text-slate-400">
