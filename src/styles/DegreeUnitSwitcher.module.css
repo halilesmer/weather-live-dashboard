@@ -1,5 +1,4 @@
 .container {
-    display: none;
     text-align: right;
     width: 100%;
     padding-right: 10%;
@@ -21,7 +20,6 @@
     display: block;
     overflow: hidden;
     cursor: pointer;
-    /* border: 0 solid #bbb; */
     border-radius: 20px;
 }
 
@@ -55,7 +53,7 @@
 .inner:after {
     content: "°C";
     padding-left: 40px;
-    background-color: #060;
+    background-color: #363030;
     color: #fff;
 }
 
@@ -85,6 +83,9 @@
 @media screen and (max-width: 768px) {
     .container {
         display: block;
+        text-align: right;
+        width: 100%;
+        padding-right: 10%;
     }
 
     .inner:after {

@@ -11,11 +11,12 @@ const AppProvider = (props) => {
   const [weatherData, setWeatherData] = useState(null);
   // Variable um das Gradeinheit zw. Celsius und Fahrenheit zu bewältigen
   const [isUnitCelsius, setIsUnitCelsius] = useState(true);
-// city: Im Suchfeld eingegebes Wort
-// successfullPlace: Speichert erfolgte Suchbegriff
+
+  // city: Im Suchfeld eingegebes Wort
+  // successfullPlace: Speichert erfolgte Suchbegriff
   const [searchInput, setSearchInput] = useState({
     city: "",
-    successfullPlace:''
+    successfullPlace: "",
   });
   const { getGeoCodeFunc, foreCastWeather } = useGeoCode();
 

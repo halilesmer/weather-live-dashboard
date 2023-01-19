@@ -2,17 +2,19 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import { AppContext } from "@/context/AppContext";
+import DegreeUnitSwitcher from "@/components/DegreeUnitSwitcher";
 import Head from "next/head";
 import { Inter } from "@next/font/google";
 import TdHighlCon from "@/components/TdHighlCon";
 import TodayCon from "@/components/TodayCon";
 import WeekCon from "@/components/WeekCon";
-import { data } from "@/data";
-import useConvert from "@/utils/useConvert";
+import useWindowSize from "@/utils/useWindowSize";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  let screenSize = useWindowSize();
+
   const { handleGeoCodeClick, weatherData } = useContext(AppContext);
 
   useEffect(() => {
@@ -21,7 +23,6 @@ export default function Home() {
     //eslint-disable-next-line
   }, []);
 
-  console.log("weatherData", weatherData);
   return (
     <>
       <Head>
@@ -35,8 +36,11 @@ export default function Home() {
         <main className="main-con grid gap-0 md:grid-cols-[30%_70%] auto-rows-auto grid-flow-row pr-3 pl-3 pb-5 h-[100vh]">
           {/* Today Container */}
           <TodayCon />
+          {/* content-center */}
+          <div className="grid-div-row-2 grid md:grid-rows-[50% 50%] md:col-start-2 md:col-end-auto md:row-start-1 md: row-end-auto  md:items-stretch bg-[#f6f6f8]">
+            {/* Wenn innere Displaygröße größer ist als angegebener Zahl, erst dann erscheint der  Switchbutton */}
+            {screenSize.width > 768 && <DegreeUnitSwitcher />}
 
-          <div className="grid-div-row-2 grid md:grid-rows-[50% 50%] md:col-start-2 md:col-end-auto md:row-start-1 md: row-end-auto content-center bg-[#f6f6f8]">
             {/* Week Container */}
             <WeekCon />
             {/* Today Highlights Container */}

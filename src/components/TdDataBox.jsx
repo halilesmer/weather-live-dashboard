@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 
 import { AppContext } from "@/context/AppContext";
 import DegreeUnitSwitcher from './DegreeUnitSwitcher';
@@ -6,17 +6,22 @@ import Image from "next/image";
 import TdConDescrBox from './TdConDescrBox';
 import moment from "moment";
 import useConvert from "@/utils/useConvert";
+import useWindowSize from '@/utils/useWindowSize';
 
 // Today Container Data Box
 const TdDataBox = () => {
     const { weatherData, searchInput, isUnitCelsius, } = useContext(AppContext)
     const { getHourMin } = useConvert();
 
+    let screenSize = useWindowSize();
+
     return (
         <div className="today-con_data-con ">
-            {/* Button Container um Temperaturmesseinheit zu ändern */}
-            <DegreeUnitSwitcher />
-
+            {/* Button Komponente um Temperaturmesseinheit zu ändern */}
+            {/* Wenn innere Displaygröße kleiner ist als angegebene Zahl, erst dann erscheint der Button */}
+            {screenSize.width < 768 &&
+                <DegreeUnitSwitcher />
+            }
             {/* Zeigt den eingegebenen Ort */}
             <p className="today-con_city-name-box text-center">
                 {searchInput.successfullPlace && weatherData
