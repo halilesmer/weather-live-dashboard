@@ -14,7 +14,7 @@ const TdHighlBox = () => {
     const { getHourMin, convertWindDirect } = useConvert();
 
     return (
-        <div className="details-con_todays-highlights_box-con grid md:col-span-5 gap-5  justify-items-center items-center grid-cols-[repeat(auto-fit,minmax(240px,1fr))]   w-full h-auto text-center bg-[#f6f6f8] pt-4 pb-4">
+        <div className="details-con_todays-highlights_box-con grid md:col-span-5 gap-5  justify-items-center max-xl:justify-center items-center grid-cols-[repeat(auto-fit,minmax(15rem,0.1fr))]   w-full h-auto text-center bg-[#f6f6f8] pt-4 pb-4">
             <div className="todays-highlights_box todays-highlights_uv-index_box grid  bg-[#ffffff] w-56 h-48 rounded-2xl items-center">
                 {/* Box-Überschrift - UV Index */}
                 <div className="todays-highlights_box-header text-left  pl-8 text-slate-400">
