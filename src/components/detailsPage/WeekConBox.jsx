@@ -11,7 +11,7 @@ const WeekConBox = () => {
   const { getDay } = useConvert();
 
   return (
-    <div className="details-con_week-con_box-con grid gap-y-1 gap-y-4  justify-items-center items-center grid-cols-[repeat(auto-fit,minmax(6rem,0.1fr))]  w-full h-auto text-center bg-[#f6f6f8] pt-4 pb-4 pr-4 pl-4">
+    <div className="details-con_week-con_box-con grid gap-y-4  justify-items-center items-center grid-cols-[repeat(auto-fit,minmax(6rem,0.1fr))]  w-full h-auto text-center bg-[#f6f6f8] pt-4 pb-4 pr-4 pl-4">
       {/* Schneidet den heutigen Tag ab */}
       {weatherData.daily.slice(1).map((data) => {
         return (
